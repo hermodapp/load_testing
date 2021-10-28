@@ -17,7 +17,7 @@ async fn main() -> Result<(), GooseError> {
 
 /// A very simple task that simply loads the front page.
 async fn authenticated_index(user: &mut GooseUser) -> GooseTaskResult {
-    let uid = rand::thread_rng().gen_range(10_000..500_001);
+    let uid = rand::thread_rng().gen_range(100_000_000..999_000_000);
     let url = format!("/qr_code/store?slug={}&generation_data={}", &uid, &uid);
     let request = user.goose_get(&url)?.header("Authorization", JWT_TOKEN);
     let _goose = user.goose_send(request, None).await?;
